@@ -1,47 +1,30 @@
-import React, { useRef, useState } from 'react';
-
+import React from "react";
 
 export default function Portada() {
-  const audioRef = useRef(null);
-  const [isMuted, setIsMuted] = useState(false); 
-
-  const handlePlayMusic = () => {
-    if (audioRef.current) {
-      audioRef.current.play().catch((error) => {
-        console.error("Error al intentar reproducir el audio:", error);
-      });
-    }
-  };
-
-  const toggleMute = () => {
-    if (audioRef.current) {
-      audioRef.current.muted = !isMuted; 
-      setIsMuted(!isMuted); 
-    }
-  };
-
   return (
-    <div>
-      <section className="relative w-full h-[calc(110vh-160px)] md:h-screen flex flex-col items-center justify-center text-white">
-        <img
-          src="/portada.png"
-          alt="Fondo"
-          className="absolute w-full h-full object-cover"
-        />
+    <section className="relative min-h-[100svh] w-full overflow-hidden">
+      {/* Imagen de fondo */}
+      <img
+        src="/portada.jpg"
+        alt="Karla y Joshua"
+        className="absolute inset-0 h-full w-full object-cover object-[center_40%]"
+      />
 
-        <div className="relative bg-opacity-50 rounded-lg w-full h-full justify-center items-center flex flex-col p-4 gap-4">
-          <h1 className="roboto-black p-12 text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-serif">
-            Nuestra Boda
-          </h1>
-          <p className="font-serif text-2xl sm:text-2xl md:text-3xl lg:text-4xl" >11 |
-             06 | 2026
-          </p>
-          <p className="font-serif text-lg sm:text-2xl md:text-3xl lg:text-4xl">Karla & Mark</p>
-        </div>
-      </section>
-    </div>
-    
+      {/* Sombreado ligero solamente en la parte inferior */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/45" />
+
+      {/* Nombres y fecha */}
+      <div className="absolute inset-x-0 bottom-0 z-10 flex flex-col items-center px-6 pb-14 text-center text-white sm:pb-16 md:pb-20">
+        <h1 className="font-serif text-4xl font-normal leading-tight tracking-wide drop-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
+          Karla & Joshua
+        </h1>
+
+        <div className="my-4 h-px w-20 bg-white/80 sm:w-24" />
+
+        <p className="font-serif text-base uppercase tracking-[0.22em] drop-shadow-md sm:text-lg md:text-xl">
+          5 de diciembre de 2026
+        </p>
+      </div>
+    </section>
   );
 }
-
-
